@@ -87,8 +87,8 @@ flipamaz/
 
 1. **API Gateway & Routing Layer**: Nginx maps `/api/...` prefixes directly to backends, shielding backend ports from the public internet.
 2. **Database Schema Isolation**: SQLite was replaced with isolated logical schemas in PostgreSQL: `auth`, `catalog`, `orders`, `rating`, and `notification`.
-3. **Redis Cache-Aside Pattern**: Matches products and catalog searches inside Redis. Catalog updates automatically invalidate the cache. Active shopping carts are stored in Redis for instantaneous page feedback.
-4. **Redis Pub/Sub Event Bus**: Checkout operations instantly publish an `ORDER_PLACED` event. Dekinked background workers log orders, generate invoices, and publish statuses asynchronously.
+3. **Redis Cache-Aside Pattern**: Caches products and catalog searches inside Redis. Catalog updates automatically invalidate the cache. Active shopping carts are stored in Redis for instantaneous page feedback.
+4. **Redis Pub/Sub Event Bus**: Checkout operations instantly publish an `ORDER_PLACED` event. Decoupled background workers log orders, generate invoices, and publish statuses asynchronously.
 5. **Real-time Notifications Bell UI**: Dynamic bell drop-down inside the navigation header polls active alerts with glassmorphic slides, badge unread counters, and mark-all-as-read options.
 6. **Automatic Self-Seeding**: Upon cluster startup, services wait for Postgres, push schema tables using Prisma, and seed initial records automatically if empty.
 
