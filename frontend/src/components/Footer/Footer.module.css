@@ -1,0 +1,159 @@
+.footer {
+  width: 100%;
+  background: #232f3e;
+  color: #eaedd1;
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.backToTop {
+  width: 100%;
+  background: #37475a;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 500;
+  text-align: center;
+  padding: 15px 0;
+  transition: var(--transition-fast);
+}
+
+.backToTop:hover {
+  background: #485769;
+}
+
+.linksSection {
+  background: #19222d;
+  padding: 40px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.linksContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 32px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.colTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.colList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.colList a {
+  font-size: 14px;
+  color: #cccccc;
+  transition: var(--transition-fast);
+}
+
+.colList a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.bottomSection {
+  background: #131a22;
+  padding: 40px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.bottomContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+  padding-bottom: 30px;
+}
+
+.brandDetails {
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.logoTextMain {
+  color: #ffffff;
+}
+
+.logoTextSub {
+  color: var(--accent-amazon);
+}
+
+.tagline {
+  font-size: 13px;
+  color: #94a3b8;
+  line-height: 1.6;
+}
+
+.paymentInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+@media (min-width: 768px) {
+  .paymentInfo {
+    align-items: flex-end;
+  }
+}
+
+.paymentText {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.paymentBadges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.badge {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #e2e8f0;
+  text-transform: uppercase;
+}
+
+.copyrightBar {
+  background: #0f141a;
+  padding: 20px 0;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.copyrightBar p {
+  font-size: 12px;
+  color: #64748b;
+}

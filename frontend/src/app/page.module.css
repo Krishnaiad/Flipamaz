@@ -1,0 +1,248 @@
+.homeContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding-bottom: 60px;
+}
+
+/* Category Shortcuts (Flipkart style icon grid) */
+.shortcutsSection {
+  background: var(--bg-card);
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.shortcutsContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.shortcutCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.shortcutEmoji {
+  font-size: 28px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--cat-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-smooth);
+  box-shadow: var(--shadow-sm);
+}
+
+.shortcutCard:hover .shortcutEmoji {
+  transform: scale(1.1) translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.shortcutName {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+/* Section Header formatting */
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.sectionTitle {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.sectionSubtitle {
+  font-size: 14px;
+  color: var(--foreground-muted);
+  font-weight: 500;
+}
+
+.timerBadge {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  color: #b45309;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+[data-theme='dark'] .timerBadge {
+  background: rgba(180, 83, 9, 0.15);
+  border-color: rgba(180, 83, 9, 0.25);
+  color: #fbbf24;
+}
+
+.viewAllBtn {
+  background: var(--accent-flipkart);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.viewAllBtn:hover {
+  background: #1c5ebd;
+  box-shadow: 0 4px 12px rgba(40, 116, 240, 0.2);
+}
+
+/* Horizontal deals list */
+.dealsSection {
+  padding: 20px 0;
+}
+
+.productSlider {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+  overflow-x: auto;
+  padding: 10px 4px;
+  scrollbar-width: thin;
+}
+
+@media (max-width: 1200px) {
+  .productSlider {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .productSlider {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .productSlider {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.sliderItem {
+  min-width: 180px;
+}
+
+/* Premium promo block (Glassmorphic) */
+.promoSection {
+  padding: 20px 0;
+}
+
+.promoCard {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--bg-card), rgba(79, 70, 229, 0.05));
+}
+
+.promoContent {
+  flex: 1;
+  max-width: 650px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.promoBadge {
+  background: rgba(79, 70, 229, 0.1);
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+.promoTitle {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.promoText {
+  font-size: 15px;
+  color: var(--foreground-muted);
+  line-height: 1.6;
+}
+
+.promoVisual {
+  position: absolute;
+  right: -50px;
+  width: 300px;
+  height: 300px;
+  z-index: 1;
+  opacity: 0.15;
+}
+
+@media (min-width: 768px) {
+  .promoVisual {
+    position: relative;
+    right: 0;
+    opacity: 0.8;
+  }
+}
+
+.circleGrad1 {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: linear-gradient(to right, #f472b6, #db2777);
+  filter: blur(40px);
+}
+
+.circleGrad2 {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: linear-gradient(to right, #6366f1, #4f46e5);
+  filter: blur(50px);
+}
+
+/* Recommendations grid */
+.recommendationsSection {
+  padding: 20px 0;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+}

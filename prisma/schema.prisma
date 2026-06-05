@@ -1,0 +1,139 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               Int              @id @default(autoincrement())
+  email            String           @unique
+  passwordHash     String
+  name             String
+  role             String           @default("USER") // USER, SELLER, ADMIN
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+  addresses        Address[]
+  reviews          Review[]
+  orders           Order[]
+  cartItems        CartItem[]
+  questionAnswers  QuestionAnswer[] @relation("UserQuestions")
+  sellerAnswers    QuestionAnswer[] @relation("SellerAnswers")
+  products         Product[]        @relation("SellerProducts")
+}
+
+model Address {
+  id         Int     @id @default(autoincrement())
+  userId     Int
+  user       User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  label      String  // Home, Work, etc.
+  street     String
+  city       String
+  state      String
+  postalCode String
+  country    String  @default("India")
+  phone      String
+  isDefault  Boolean @default(false)
+}
+
+model Category {
+  id          Int        @id @default(autoincrement())
+  name        String
+  slug        String     @unique
+  description String?
+  parentId    Int?
+  parent      Category?  @relation("CategoryHierarchy", fields: [parentId], references: [id])
+  children    Category[] @relation("CategoryHierarchy")
+  products    Product[]
+}
+
+model Product {
+  id              Int              @id @default(autoincrement())
+  name            String
+  description     String
+  price           Float
+  discountPercent Float            @default(0)
+  stock           Int              @default(10)
+  brand           String
+  ratingAverage   Float            @default(0)
+  ratingCount     Int              @default(0)
+  images          String           // JSON-serialized string of image URLs
+  specifications  String           // JSON-serialized string of spec key-values
+  sellerId        Int
+  seller          User             @relation("SellerProducts", fields: [sellerId], references: [id], onDelete: Cascade)
+  categoryId      Int
+  category        Category         @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  reviews         Review[]
+  cartItems       CartItem[]
+  orderItems      OrderItem[]
+  questionAnswers QuestionAnswer[]
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+}
+
+model CartItem {
+  id        Int     @id @default(autoincrement())
+  userId    Int
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId Int
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  quantity  Int     @default(1)
+}
+
+model Order {
+  id              Int         @id @default(autoincrement())
+  userId          Int
+  user            User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  status          String      @default("PENDING") // PENDING, PROCESSING, SHIPPED, DELIVERED, CANCELLED
+  totalAmount     Float
+  discountAmount  Float       @default(0)
+  paymentStatus   String      @default("PENDING") // PENDING, PAID, FAILED
+  paymentMethod   String      // CREDIT_CARD, UPI, COD, EMI
+  shippingAddress String      // JSON-serialized shipping address
+  trackingNumber  String?
+  orderItems      OrderItem[]
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+}
+
+model OrderItem {
+  id        Int      @id @default(autoincrement())
+  orderId   Int
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId Int?
+  product   Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+  name      String
+  price     Float
+  quantity  Int
+  image     String?
+}
+
+model Review {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId Int
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  rating    Int      // 1 to 5
+  title     String?
+  comment   String?
+  createdAt DateTime @default(now())
+}
+
+model QuestionAnswer {
+  id        Int      @id @default(autoincrement())
+  productId Int
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  userId    Int
+  user      User     @relation("UserQuestions", fields: [userId], references: [id], onDelete: Cascade)
+  question  String
+  answer    String?
+  sellerId  Int?
+  seller    User?    @relation("SellerAnswers", fields: [sellerId], references: [id], onDelete: SetNull)
+  createdAt DateTime @default(now())
+}

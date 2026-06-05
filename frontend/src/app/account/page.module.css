@@ -1,0 +1,449 @@
+.dashboardPage {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 30px 20px;
+}
+
+@media (min-width: 992px) {
+  .dashboardPage {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+/* Sidebar styling */
+.sidebar {
+  width: 100%;
+  padding: 24px;
+  background: var(--bg-card);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  flex-shrink: 0;
+}
+
+@media (min-width: 992px) {
+  .sidebar {
+    width: 280px;
+    position: sticky;
+    top: 150px;
+  }
+}
+
+.profileHeader {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 20px;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  background: var(--primary);
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 800;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+}
+
+.profileMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.profileWelcome {
+  font-size: 11px;
+  color: var(--foreground-light);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.profileName {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.profileRoleBadge {
+  background: rgba(79, 70, 229, 0.1);
+  color: var(--primary);
+  font-size: 9px;
+  font-weight: 800;
+  border-radius: 4px;
+  padding: 2px 6px;
+  align-self: flex-start;
+  margin-top: 2px;
+}
+
+.sidebarNav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.navItem {
+  display: flex;
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--foreground-muted);
+  border-radius: var(--radius-xs);
+  transition: var(--transition-fast);
+  cursor: pointer;
+  text-align: left;
+}
+
+.navItem:hover {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.activeNavItem {
+  background: rgba(79, 70, 229, 0.05);
+  color: var(--primary);
+  border-left: 3px solid var(--primary);
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* Main Content panels */
+.mainContent {
+  flex: 1;
+}
+
+.panelCard {
+  background: var(--bg-card);
+  padding: 30px;
+}
+
+.panelTitle {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 12px 0 20px 0;
+}
+
+.profileGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+}
+
+.profileField {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+}
+
+.profileField span {
+  color: var(--foreground-muted);
+  font-weight: 600;
+}
+
+/* Addresses panel */
+.addressesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.addressCard {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.addressCard strong {
+  font-size: 14px;
+  text-transform: uppercase;
+  color: var(--primary);
+  letter-spacing: 0.5px;
+}
+
+/* Orders Panel styles */
+.ordersContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ordersList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.orderCard {
+  background: var(--bg-card);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.orderHeader {
+  background: var(--background);
+  padding: 16px 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.orderLabel {
+  display: block;
+  font-size: 10px;
+  color: var(--foreground-light);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.orderVal {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.orderIdBlock {
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .orderIdBlock {
+    text-align: right;
+  }
+}
+
+.statusBadge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.statusBadge.processing {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.statusBadge.shipped {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+.statusBadge.delivered {
+  background: #d1fae5;
+  color: #059669;
+}
+
+.orderBody {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.orderItem {
+  display: flex;
+  gap: 16px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 16px;
+}
+
+.orderItem:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.orderItemImage {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  background: #ffffff;
+  padding: 4px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border-color);
+}
+
+.orderItemInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13px;
+}
+
+.orderItemName {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.orderItemName:hover {
+  color: var(--primary);
+}
+
+.orderItemQty {
+  color: var(--foreground-muted);
+}
+
+.orderItemPrice {
+  font-weight: 700;
+}
+
+/* Empty Dash states */
+.emptyPanel {
+  background: var(--bg-card);
+  padding: 60px 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.emptyPanel h3 {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.emptyPanel p {
+  font-size: 14px;
+  color: var(--foreground-muted);
+  max-width: 320px;
+  margin-bottom: 8px;
+}
+
+/* Wishlist container */
+.wishlistContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.wishlistGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+/* AUTH PAGES (Login/Register Card) styles */
+.authPage {
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.authCard {
+  width: 100%;
+  max-width: 460px;
+  background: var(--bg-card);
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.authTabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 2px solid var(--border-color);
+  margin-bottom: 10px;
+}
+
+.authTabBtn {
+  font-size: 16px;
+  font-weight: 700;
+  padding: 12px 6px;
+  color: var(--foreground-muted);
+  cursor: pointer;
+  text-align: center;
+  transition: var(--transition-fast);
+}
+
+.authTabBtn:hover {
+  color: var(--primary);
+}
+
+.activeAuthTab {
+  color: var(--primary);
+  border-bottom: 3px solid var(--primary);
+  margin-bottom: -2px;
+}
+
+.authTitle {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  text-align: center;
+}
+
+.authSubtitle {
+  font-size: 13px;
+  color: var(--foreground-muted);
+  text-align: center;
+  line-height: 1.4;
+  margin-top: -8px;
+}
+
+.errorText {
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  color: #b91c1c;
+  padding: 10px 14px;
+  border-radius: var(--radius-xs);
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.authForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.authSubmitBtn {
+  background: var(--primary);
+  color: #ffffff;
+  font-weight: 700;
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  text-align: center;
+  margin-top: 8px;
+  transition: var(--transition-fast);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.15);
+}
+
+.authSubmitBtn:hover {
+  background: var(--primary-hover);
+}
+
+.demoCredits {
+  background: var(--background);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xs);
+  padding: 12px 16px;
+  font-size: 11px;
+  color: var(--foreground-muted);
+  line-height: 1.5;
+  margin-top: 10px;
+}

@@ -1,0 +1,264 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  /* Fonts */
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+
+  /* Harmonious Color Palette (Default: Premium Light Theme) */
+  --background: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-card-glass: rgba(255, 255, 255, 0.75);
+  --border-color: rgba(226, 232, 240, 0.8);
+  --border-color-glass: rgba(255, 255, 255, 0.4);
+  --foreground: #0f172a;
+  --foreground-muted: #64748b;
+  --foreground-light: #94a3b8;
+
+  /* Accent Colors */
+  --primary: #4f46e5;         /* Indigo Primary */
+  --primary-hover: #4338ca;
+  --accent-flipkart: #2874f0;  /* Flipkart Blue */
+  --accent-amazon: #ff9900;    /* Amazon Orange */
+  --accent-amazon-dark: #131921; /* Amazon Dark Blue */
+  
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+
+  /* Effects & Glassmorphism */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  
+  --shadow-sm: 0 2px 8px -2px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 12px 20px -8px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.03);
+  --shadow-lg: 0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 10px 10px -5px rgba(15, 23, 42, 0.04);
+  --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.04);
+  
+  --glass-blur: blur(12px);
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Force Dark Mode Default or Media-based Dark Mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #090d16;
+    --bg-card: #0f172a;
+    --bg-card-glass: rgba(15, 23, 42, 0.7);
+    --border-color: rgba(51, 65, 85, 0.5);
+    --border-color-glass: rgba(255, 255, 255, 0.05);
+    --foreground: #f8fafc;
+    --foreground-muted: #94a3b8;
+    --foreground-light: #64748b;
+    
+    --shadow-sm: 0 2px 8px -2px rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 12px 24px -10px rgba(0, 0, 0, 0.6);
+    --shadow-lg: 0 24px 38px -12px rgba(0, 0, 0, 0.7);
+  }
+}
+
+/* Explicit Dark Theme Class (if toggled) */
+[data-theme='dark'] {
+  --background: #090d16;
+  --bg-card: #0f172a;
+  --bg-card-glass: rgba(15, 23, 42, 0.7);
+  --border-color: rgba(51, 65, 85, 0.5);
+  --border-color-glass: rgba(255, 255, 255, 0.05);
+  --foreground: #f8fafc;
+  --foreground-muted: #94a3b8;
+  --foreground-light: #64748b;
+  
+  --shadow-sm: 0 2px 8px -2px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 12px 24px -10px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 24px 38px -12px rgba(0, 0, 0, 0.7);
+}
+
+/* Reset and Core Layout */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: var(--font-sans);
+  color: var(--foreground);
+  background: var(--background);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--foreground-light);
+}
+
+/* Core Utility Classes */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.glass-card {
+  background: var(--bg-card-glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-color-glass);
+  box-shadow: var(--shadow-glass);
+  border-radius: var(--radius-md);
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(16px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes scaleUp {
+  from { transform: scale(0.96); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.animate-fade {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-scale {
+  animation: scaleUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Common Interactive Styles */
+.btn-primary {
+  background: var(--primary);
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  transition: var(--transition-fast);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(79, 70, 229, 0.3);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: var(--bg-card);
+  color: var(--foreground);
+  border: 1px solid var(--border-color);
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  transition: var(--transition-fast);
+}
+
+.btn-secondary:hover {
+  background: var(--background);
+  border-color: var(--foreground-light);
+}
+
+.btn-amazon {
+  background: linear-gradient(to bottom, #f7dfa5, #f0c14b);
+  border: 1px solid #a88734;
+  color: #111;
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  box-shadow: 0 1px 0 rgba(255,255,255,.4) inset;
+  transition: var(--transition-fast);
+}
+
+.btn-amazon:hover {
+  background: linear-gradient(to bottom, #f5d78e, #eeb933);
+  border-color: #846a29;
+}
+
+.btn-flipkart {
+  background: #fb641b;
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-weight: 600;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,.2);
+  transition: var(--transition-fast);
+  text-transform: uppercase;
+}
+
+.btn-flipkart:hover {
+  background: #f15810;
+  box-shadow: 0 4px 12px rgba(251, 100, 27, 0.35);
+}

@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int       @id @default(autoincrement())
+  email        String    @unique
+  passwordHash String
+  name         String
+  role         String    @default("USER") // USER, SELLER, ADMIN
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  addresses    Address[]
+
+  @@map("users")
+}
+
+model Address {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  label      String   // Home, Work, etc.
+  street     String
+  city       String
+  state      String
+  postalCode String
+  country    String   @default("India")
+  phone      String
+  isDefault  Boolean  @default(false)
+
+  @@map("addresses")
+}
