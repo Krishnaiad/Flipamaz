@@ -12,11 +12,11 @@ Client requests are intercepted by Nginx, which serves as a centralized API Gate
 graph TD
     User([User Browser]) -->|HTTP| Gateway[Nginx Load Balancer & API Gateway]
     
-    subgraph Frontend Render
+    subgraph "Frontend Render"
         Gateway -->|/ & /product/* & /search| NextJS[Next.js Frontend Service]
     end
 
-    subgraph Microservices Layer (Express.js APIs)
+    subgraph "Microservices Layer (Express.js APIs)"
         Gateway -->|/api/auth/* & /api/addresses| AuthService[Auth & User Service :4001]
         Gateway -->|/api/products/*| CatalogService[Catalog & Product Service :4002]
         Gateway -->|/api/cart/* & /api/checkout| CartService[Cart & Checkout Service :4003]
@@ -25,7 +25,7 @@ graph TD
         Gateway -->|/api/notifications/*| NotificationService[Notification Service :4006]
     end
 
-    subgraph Caching & Event Bus
+    subgraph "Caching & Event Bus"
         CatalogService <-->|Cache Catalog & Products| Redis[(Redis Cache & Event Bus)]
         CartService <-->|Cache Active Carts| Redis
         CartService -.->|Publish ORDER_PLACED| Redis
@@ -34,7 +34,7 @@ graph TD
         Redis -.->|Event Subscription| NotificationService
     end
 
-    subgraph Isolated Schemas (Database per Service)
+    subgraph "Isolated Schemas (Database per Service)"
         AuthService -->|Schema: auth| PostgreSQL[(PostgreSQL Database)]
         CatalogService -->|Schema: catalog| PostgreSQL
         CartService -->|Schema: orders| PostgreSQL
